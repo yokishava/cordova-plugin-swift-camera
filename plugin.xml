@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-swift-camera" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>swiftcamera</name>
+    <js-module name="swiftcamera" src="www/swiftcamera.js">
+        <clobbers target="cordova.plugins.swiftcamera" />
+    </js-module>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="swiftcamera">
+                <param name="ios-package" value="swiftcamera" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <preference name="CAMERA_USAGE_DESCRIPTION" default=" " />
+        <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+            <string>$CAMERA_USAGE_DESCRIPTION</string>
+        </config-file>
+        <source-file src="src/ios/swiftcamera.swift" />
+        <source-file src="src/ios/CameraButton.swift" />
+        <source-file src="src/ios/CameraPreview.swift" />
+        <source-file src="src/ios/CameraViewController.swift" />
+        
+        <framework src="AVFoundation.framework" />
+        
+        <dependency id="cordova-plugin-add-swift-support" version="1.7.2"/>
+    </platform>
+</plugin>
